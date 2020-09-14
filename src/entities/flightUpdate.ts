@@ -19,10 +19,7 @@ class FlightUpdate {
   message: string;
 
   @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
+  created: Date;
 
   @ManyToOne(() => Flight, { nullable: true })
   @JoinColumn()

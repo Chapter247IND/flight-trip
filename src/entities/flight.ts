@@ -10,6 +10,7 @@ import {
 
 import User from "./user";
 import Trips from "./trip";
+import FlightUpdates from "./flightUpdate";
 
 @Entity({ name: "flights" })
 class Flight {
@@ -35,16 +36,16 @@ class Flight {
   updatedAt: Date;
 
   @ManyToMany(() => User)
-  @JoinTable()
+  //@JoinTable()
   users: User[];
 
-  @ManyToMany(() => User)
-  @JoinTable()
+  @ManyToMany(() => Trips)
+  //@JoinTable()
   trips: Trips[];
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  updates: Trips[];
+  @ManyToMany(() => FlightUpdates)
+ // @JoinTable()
+  updates: FlightUpdates[]; 
 }
 
 export default Flight;

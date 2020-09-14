@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import fastify, { FastifyInstance } from "fastify";
 import fastifyBlipp from "fastify-blipp";
 import { IncomingMessage, Server, ServerResponse } from "http";
-import fastifyStatic from "fastify-static";
 import fastifyCORS from "fastify-cors";
-import { createConnection } from "typeorm";
+import addUser from "./seeders/user";
+import addCompany from "./seeders/company";
 
 // initialize .env
 dotenv.config();
@@ -20,6 +20,9 @@ const server: FastifyInstance<
 server.register(fastifyCORS, {});
 // register routes logger
 server.register(fastifyBlipp);
+
+//addUser()
+//addCompany()
 
 /**
  * Handle all uncaugth exceptions

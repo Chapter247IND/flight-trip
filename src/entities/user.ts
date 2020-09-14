@@ -33,11 +33,9 @@ class User {
   })
   phone: string;
 
-  @Column()
-  companyId: number;
 
-  @ManyToOne((type) => Company)
-  @JoinColumn()
+  @ManyToOne((type) => Company) /* (company) => company.users */
+  //@JoinColumn()
   company: Company;
 
   @CreateDateColumn()

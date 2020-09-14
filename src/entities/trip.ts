@@ -29,12 +29,12 @@ class Trip {
   updatedAt: Date;
 
   @ManyToMany(() => User)
-  @JoinTable()
+ // @JoinTable()
   users: User[];
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  flights: Flights[];
+  @ManyToMany(() => Flights)
+ // @JoinTable()
+  flights: Flights[]; 
 }
 
 export default Trip;

@@ -26,11 +26,10 @@ class Company {
   name: string;
 
   @ManyToMany(() => User)
-  @JoinTable()
+ // @JoinTable()
   users: User[];
 
   @OneToOne(() => User)
-  @JoinColumn()
   administrator: User;
 }
 
