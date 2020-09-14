@@ -1,36 +1,38 @@
 {
-   "name": "server",
-   "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
-   "scripts": {
-      "test": "jest",
-      "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
-      "db:migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
-      "build": "ttsc",
-      "start": "npm run build && cp .env dist/ && cp ormconfig.js dist/ && cd dist/ && node index.js"
-   },
-   "devDependencies": {
-      "@types/bcrypt": "^3.0.0",
-      "@types/jsonwebtoken": "^8.5.0",
-      "@types/socket.io": "^2.1.11",
-      "@zerollup/ts-transform-paths": "^1.7.18",
-      "jest": "^26.4.2",
-      "ts-jest": "^26.3.0",
-      "tsconfig-paths": "^3.9.0",
-      "ttypescript": "^1.5.12"
-   },
-   "dependencies": {
-      "@types/node": "^8.10.63",
-      "ts-node": "^3.3.0",
-      "typescript": "^3.9.7",
-      "bcrypt": "^5.0.0",
-      "dotenv": "^8.2.0",
-      "fastify": "^3.3.0",
-      "fastify-blipp": "^3.0.0",
-      "fastify-cors": "^4.1.0",
-      "fastify-static": "^3.2.0",
-      "pg": "^8.3.3",
-      "reflect-metadata": "^0.1.13",
-      "typeorm": "0.2.25"
-   }
+  "name": "server",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
+    "db:migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "build": "ttsc",
+    "start": "npm run build && cp .env dist/ && cp ormconfig.js dist/ && cd dist/ && node index.js"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/socket.io": "^2.1.11",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "tsconfig-paths": "^3.9.0",
+    "ttypescript": "^1.5.12"
+  },
+  "dependencies": {
+    "@types/faker": "^5.1.0",
+    "@types/node": "^8.10.63",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "faker": "^5.1.0",
+    "fastify": "^3.3.0",
+    "fastify-blipp": "^3.0.0",
+    "fastify-cors": "^4.1.0",
+    "fastify-static": "^3.2.0",
+    "pg": "^8.3.3",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^3.3.0",
+    "typeorm": "0.2.25",
+    "typescript": "^3.9.7"
+  }
 }

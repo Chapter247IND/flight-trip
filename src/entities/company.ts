@@ -1,17 +1,13 @@
 import {
   Column,
-  CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
-  OneToMany,
   ManyToOne,
   OneToOne,
-  JoinColumn,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
-
 import User from "./user";
 
 @Entity({ name: "companies" })
@@ -25,12 +21,17 @@ class Company {
   })
   name: string;
 
-  @ManyToMany(() => User)
- // @JoinTable()
+  @OneToMany((type) => User, user => user.company)
   users: User[];
 
   @OneToOne(() => User)
   administrator: User;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
 
 export default Company;

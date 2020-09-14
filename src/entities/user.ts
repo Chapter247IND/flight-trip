@@ -2,13 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  PrimaryColumn,
-  ManyToOne,
-  JoinColumn,
 } from "typeorm";
-
 import Company from "./company";
 
 @Entity({ name: "users" })

@@ -32,6 +32,7 @@ export class User1599906240306 implements MigrationInterface {
           {
             name: "company",
             type: "int",
+            isNullable: true,
           },
           {
             name: "createdAt",
@@ -48,14 +49,6 @@ export class User1599906240306 implements MigrationInterface {
       }),
       true
     );
-     await queryRunner.createForeignKey(
-      "users",
-      new TableForeignKey({
-        columnNames: ["company"],
-        referencedTableName: "companies",
-        referencedColumnNames: ["id"],
-      })
-    ); 
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

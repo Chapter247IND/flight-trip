@@ -2,15 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
 } from "typeorm";
-
-import User from "./user";
+import FlightUpdate from "./flightUpdate";
 import Trips from "./trip";
 import FlightUpdates from "./flightUpdate";
+import User from "./user";
 
 @Entity({ name: "flights" })
 class Flight {

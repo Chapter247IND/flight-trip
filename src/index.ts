@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import dotenv from "dotenv";
 import fastify, { FastifyInstance } from "fastify";
 import fastifyBlipp from "fastify-blipp";
@@ -41,11 +40,10 @@ process.on("unhandledRejection", (error) => {
 
 (async () => {
   try {
-    const port: number = Number(process.env.PORT || "8010");
-    await server.listen(port, () => {
-        console.log(`🚀 Server ready at http://localhost:${port}`);
-    });
-    //server.blipp();
+    const port: number = Number(process.env.PORT || "8000");
+    await server.listen(port);
+    console.log(`🚀 Server ready at http://localhost:${port}`);
+    server.blipp();
   } catch (err) {
     console.log(err);
     server.log.error(err);
