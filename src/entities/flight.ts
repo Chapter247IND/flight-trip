@@ -2,14 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
 } from "typeorm";
-
-import User from "./user";
+import FlightUpdate from "./flightUpdate";
 import Trips from "./trip";
+import User from "./user";
 
 @Entity({ name: "flights" })
 class Flight {
@@ -35,16 +34,13 @@ class Flight {
   updatedAt: Date;
 
   @ManyToMany(() => User)
-  @JoinTable()
   users: User[];
 
-  @ManyToMany(() => User)
-  @JoinTable()
+  @ManyToMany(() => Trips)
   trips: Trips[];
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  updates: Trips[];
+  @ManyToMany(() => FlightUpdate)
+  updates: FlightUpdate[];
 }
 
 export default Flight;

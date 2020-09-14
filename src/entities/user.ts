@@ -2,13 +2,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  PrimaryColumn,
-  ManyToOne,
-  JoinColumn,
 } from "typeorm";
-
 import Company from "./company";
 
 @Entity({ name: "users" })
@@ -33,11 +30,12 @@ class User {
   })
   phone: string;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   companyId: number;
 
   @ManyToOne((type) => Company)
-  @JoinColumn()
   company: Company;
 
   @CreateDateColumn()
