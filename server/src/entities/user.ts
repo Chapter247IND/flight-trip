@@ -4,7 +4,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToOne, JoinColumn
+  PrimaryColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import Company from "./company";
@@ -16,23 +18,25 @@ class User {
 
   @Column({
     length: 150,
+    type: "varchar",
   })
   name: string;
 
   @Column({
     length: 150,
+    type: "varchar",
   })
   email: string;
 
-  @Column({})
+  @Column({
+    type: "varchar",
+  })
   phone: string;
 
-  @Column({
-    type: "text",
-  })
-  password: string;
+  @Column()
+  companyId: number;
 
-  @OneToOne((type) => Company)
+  @ManyToOne((type) => Company)
   @JoinColumn()
   company: Company;
 

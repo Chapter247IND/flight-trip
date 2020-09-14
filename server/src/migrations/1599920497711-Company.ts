@@ -47,6 +47,11 @@ export class Company1599920497711 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+      await queryRunner.dropTable(
+        new Table({
+          name: "companies",
+        })
+      );
     }
 
 }
