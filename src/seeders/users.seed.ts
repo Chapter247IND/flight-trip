@@ -1,6 +1,6 @@
-import dbConnection from "@server/utills/db.connection";
+import dbConnection from "../utills/db.connection";
 import { getRepository, getConnection } from "typeorm";
-import { Users } from "@server/entities";
+import { Users, Companies } from "../entities";
 import faker from "faker";
 export default async () => {
   await dbConnection;
@@ -12,6 +12,13 @@ export default async () => {
       name: faker.name.firstName(),
       email: faker.internet.email(),
       phone: faker.phone.phoneNumber(),
+     /*  company: (
+        await getRepository(Companies)
+          .createQueryBuilder()
+          .orderBy("RANDOM()")
+          .limit(1)
+          .getOne()
+      ).id, */
     });
   }
   await connection

@@ -5,6 +5,11 @@ import { IncomingMessage, Server, ServerResponse } from "http";
 import fastifyCORS from "fastify-cors";
 import addUser from "./seeders/user";
 import addCompany from "./seeders/company";
+import { default as SeedTrips } from "./seeders/trips.seed";
+import { default as SeedUsers } from "./seeders/users.seed";
+import { default as SeedCompaies } from "./seeders/company.seed";
+import { default as SeedFlights } from "./seeders/flights.seed";
+import { default as SeedFlightUpdation } from "./seeders/flight.update.seed";
 
 // initialize .env
 dotenv.config();
@@ -20,8 +25,10 @@ server.register(fastifyCORS, {});
 // register routes logger
 server.register(fastifyBlipp);
 
-//addUser()
-//addCompany()
+ 
+//SeedUsers()
+ //SeedCompaies()
+// SeedTrips()
 
 /**
  * Handle all uncaugth exceptions
@@ -51,21 +58,3 @@ process.on("unhandledRejection", (error) => {
   }
 })();
 
-/* createConnection().then(async connection => {
-
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.firstName = "Timber";
-    user.lastName = "Saw";
-    user.age = 25;
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
-
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
-
-    console.log("Here you can setup and run express/koa/any other framework.");
-
-}).catch(error => console.log(error));
- */

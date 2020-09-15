@@ -2,7 +2,6 @@ import {
   MigrationInterface,
   QueryRunner,
   Table,
-  TableForeignKey,
 } from "typeorm";
 
 export class Company1599920497711 implements MigrationInterface {
@@ -24,6 +23,10 @@ export class Company1599920497711 implements MigrationInterface {
           {
             name: "users",
             type: "int[]",
+          },
+          {
+            name: "administrator",
+            type: "int",
           },
           {
             name: "createdAt",
