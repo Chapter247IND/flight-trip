@@ -2,6 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -15,15 +17,17 @@ class Trip {
   id: number;
 
   @Column()
-  startdate: Date;
+  startDate: Date;
 
   @Column()
   endDate: Date;
 
   @ManyToMany(() => User)
+  @JoinTable()
   users: User[];
 
   @ManyToMany(() => Flights)
+  @JoinTable()
   flights: Flights[];
 
   @CreateDateColumn()

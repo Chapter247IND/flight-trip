@@ -8,19 +8,24 @@ import {
 } from "typeorm";
 import Flight from "./flight";
 
-@Entity({ name: "flightUpdates" })
+@Entity({ name: "flight_updates" })
 class FlightUpdate {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   message: string;
+
+  @ManyToOne(() => Flight)
+  flight: Flight;
 
   @CreateDateColumn()
   created: Date;
 
-  @ManyToOne(() => Flight, { nullable: true })
-  flight: Flight;
+  @UpdateDateColumn()
+  updated: Date;
 }
 
 export default FlightUpdate;

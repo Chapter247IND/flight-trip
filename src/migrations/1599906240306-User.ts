@@ -30,7 +30,7 @@ export class User1599906240306 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "company",
+            name: "companyId",
             type: "int",
             isNullable: true,
           },

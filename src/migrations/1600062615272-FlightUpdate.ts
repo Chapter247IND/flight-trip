@@ -1,10 +1,15 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from "typeorm";
 
 export class FlightUpdate1600062615272 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "flightupdates",
+        name: "flight_updates",
         columns: [
           {
             name: "id",
@@ -22,7 +27,7 @@ export class FlightUpdate1600062615272 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "flight",
+            name: "flightId",
             type: "int",
           },
         ],
@@ -30,20 +35,20 @@ export class FlightUpdate1600062615272 implements MigrationInterface {
       true
     );
     await queryRunner.createForeignKey(
-        "flightupdates",
-        new TableForeignKey({
-          columnNames: ["flight"],
-          referencedTableName: "flights",
-          referencedColumnNames: ["id"],
-        })
-      );
+      "flight_updates",
+      new TableForeignKey({
+        columnNames: ["flightId"],
+        referencedTableName: "flights",
+        referencedColumnNames: ["id"],
+      })
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(
-        new Table({
-          name: "flightupdates",
-        })
-      );
+      new Table({
+        name: "flight_updates",
+      })
+    );
   }
 }

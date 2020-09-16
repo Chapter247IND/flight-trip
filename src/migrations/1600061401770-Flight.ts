@@ -21,15 +21,15 @@ export class Flight1600061401770 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "users",
+            name: "userIds",
             type: "int[]",
           },
           {
-            name: "trips",
+            name: "tripIds",
             type: "int[]",
           },
           {
-            name: "updates",
+            name: "updateIds",
             type: "int[]",
           },
           {
@@ -51,9 +51,9 @@ export class Flight1600061401770 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(
-        new Table({
-          name: "flights",
-        })
-      );
+      new Table({
+        name: "flights",
+      })
+    );
   }
 }

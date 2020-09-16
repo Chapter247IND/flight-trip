@@ -1,12 +1,16 @@
+import { company } from "faker";
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import Company from "./company";
+import Trip from "./trip";
 
 @Entity({ name: "users" })
 class User {
@@ -30,10 +34,12 @@ class User {
   })
   phone: string;
 
-
-  @ManyToOne((type) => Company) /* (company) => company.users */
-  //@JoinColumn()
+  @ManyToOne((type) => Company, (company) => company.users)
+  @JoinColumn({ name: "companyId" })
   company: Company;
+
+  @ManyToMany(() => Trip)
+  trips: Trip[];
 
   @CreateDateColumn()
   createdAt: Date;

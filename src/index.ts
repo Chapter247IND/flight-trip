@@ -1,16 +1,9 @@
 import dotenv from "dotenv";
 import fastify, { FastifyInstance } from "fastify";
 import fastifyBlipp from "fastify-blipp";
-import { IncomingMessage, Server, ServerResponse } from "http";
 import fastifyCORS from "fastify-cors";
-import addUser from "./seeders/user";
-import addCompany from "./seeders/company";
-import { default as SeedTrips } from "./seeders/trips.seed";
-import { default as SeedUsers } from "./seeders/users.seed";
-import { default as SeedCompaies } from "./seeders/company.seed";
-import { default as SeedFlights } from "./seeders/flights.seed";
-import { default as SeedFlightUpdation } from "./seeders/flight.update.seed";
-
+import { IncomingMessage, Server, ServerResponse } from "http";
+import seeder from "./seeders";
 // initialize .env
 dotenv.config();
 
@@ -24,11 +17,6 @@ const server: FastifyInstance<
 server.register(fastifyCORS, {});
 // register routes logger
 server.register(fastifyBlipp);
-
- 
-//SeedUsers()
- //SeedCompaies()
-// SeedTrips()
 
 /**
  * Handle all uncaugth exceptions
@@ -47,6 +35,11 @@ process.on("unhandledRejection", (error) => {
 
 (async () => {
   try {
+    // only runs when SEED_DB is true i.e. npm run db:seed
+    if (process.env.SEED_DB) {
+      await seeder();
+      process.exit();
+    }
     const port: number = Number(process.env.PORT || "8000");
     await server.listen(port);
     console.log(`🚀 Server ready at http://localhost:${port}`);
@@ -57,4 +50,3 @@ process.on("unhandledRejection", (error) => {
     process.exit(1);
   }
 })();
-

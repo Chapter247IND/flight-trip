@@ -7,6 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  JoinColumn,
 } from "typeorm";
 import User from "./user";
 
@@ -21,10 +22,11 @@ class Company {
   })
   name: string;
 
-  @OneToMany((type) => User, user => user.company)
+  @OneToMany((type) => User, (user) => user.company)
   users: User[];
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
+  @JoinColumn({ name: "administratorId" })
   administrator: User;
 
   @CreateDateColumn()

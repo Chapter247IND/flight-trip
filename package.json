@@ -6,6 +6,7 @@
     "test": "jest",
     "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' -r tsconfig-paths/register src/index.ts",
     "db:migrate": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "db:seed": "cross-env SEED_DB=true ts-node -r tsconfig-paths/register src/index.ts",
     "build": "ttsc",
     "start": "npm run build && cp .env dist/ && cp ormconfig.js dist/ && cd dist/ && node index.js"
   },
@@ -14,6 +15,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/socket.io": "^2.1.11",
     "@zerollup/ts-transform-paths": "^1.7.18",
+    "cross-env": "^7.0.2",
     "jest": "^26.4.2",
     "ts-jest": "^26.3.0",
     "tsconfig-paths": "^3.9.0",

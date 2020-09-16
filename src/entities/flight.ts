@@ -1,8 +1,13 @@
 import {
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
+  getRepository,
+  JoinColumn,
+  JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -23,10 +28,27 @@ class Flight {
   flightName: string;
 
   @Column({
-    length: 150,
-    type: "varchar",
+    type: "text",
   })
   carrier: string;
+
+  @Column({
+    array: true,
+    type: "int",
+    nullable: true,
+  })
+  updateIds: number[];
+
+  @ManyToMany(() => User)
+  @JoinTable()
+  users: User[];
+
+  @ManyToMany(() => Trips)
+  @JoinTable()
+  trips: Trips[];
+
+  @OneToMany(() => FlightUpdates, (flightUpdate) => flightUpdate.flight)
+  updates: FlightUpdates[];
 
   @CreateDateColumn()
   createdAt: Date;
@@ -34,17 +56,11 @@ class Flight {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToMany(() => User)
-  //@JoinTable()
-  users: User[];
-
-  @ManyToMany(() => Trips)
-  //@JoinTable()
-  trips: Trips[];
-
-  @ManyToMany(() => FlightUpdates)
- // @JoinTable()
-  updates: FlightUpdates[]; 
+  @BeforeUpdate()
+  async updateUpdatedData() {
+    const flightId = this.id;
+    console.log(flightId);
+  }
 }
 
 export default Flight;

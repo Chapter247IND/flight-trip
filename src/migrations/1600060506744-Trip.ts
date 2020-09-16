@@ -21,11 +21,11 @@ export class Trip1600060506744 implements MigrationInterface {
             type: "date",
           },
           {
-            name: "users",
+            name: "userIds",
             type: "int[]",
           },
           {
-            name: "flights",
+            name: "flightIds",
             type: "int[]",
           },
           {
@@ -47,9 +47,9 @@ export class Trip1600060506744 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(
-        new Table({
-          name: "trips",
-        })
-      );
+      new Table({
+        name: "trips",
+      })
+    );
   }
 }

@@ -1,8 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class Company1599920497711 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -21,11 +17,11 @@ export class Company1599920497711 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "users",
+            name: "userIds",
             type: "int[]",
           },
           {
-            name: "administrator",
+            name: "administratorId",
             type: "int",
           },
           {

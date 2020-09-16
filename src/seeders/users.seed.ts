@@ -1,31 +1,18 @@
-import dbConnection from "../utills/db.connection";
-import { getRepository, getConnection } from "typeorm";
-import { Users, Companies } from "../entities";
 import faker from "faker";
+import { getRepository } from "typeorm";
+import { Users } from "../entities";
+import dbConnection from "../utills/db.connection";
+
 export default async () => {
   await dbConnection;
   console.log(`In user insertion`);
-  const connection = getConnection();
-  const fakeUsers = [];
-  for (let i = 0; i < 50; i++) {
-    fakeUsers.push({
+  for (let i = 0; i < 5; i++) {
+    const user = getRepository(Users).create({
       name: faker.name.firstName(),
       email: faker.internet.email(),
       phone: faker.phone.phoneNumber(),
-     /*  company: (
-        await getRepository(Companies)
-          .createQueryBuilder()
-          .orderBy("RANDOM()")
-          .limit(1)
-          .getOne()
-      ).id, */
     });
+    await getRepository(Users).save(user);
   }
-  await connection
-    .createQueryBuilder()
-    .insert()
-    .into(Users)
-    .values(fakeUsers)
-    .execute();
-  console.log(`50 new fake user records inserted successfully!`);
+  console.log(`fake user records inserted successfully!`);
 };
