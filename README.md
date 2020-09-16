@@ -15,6 +15,8 @@ npm install
 
 ### Migrate database
 
+Since synchronization is used for TypeORM, you don't need to follow this, the database will be synched based on the entities.
+
 ```
 npm run db:migrate
 ```
