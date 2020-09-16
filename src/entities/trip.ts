@@ -28,7 +28,7 @@ class Trip {
   @JoinTable()
   users: User[];
 
-  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.flight)
+  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.trip)
   tripToFlights!: TripToFlight[];
 
   @CreateDateColumn()

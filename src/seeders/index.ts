@@ -6,7 +6,7 @@ import { default as SeedUsers } from "./users.seed";
 export default async () => {
   await SeedUsers();
   await SeedCompaies();
-  await SeedTrips();
   await SeedFlights();
+  await SeedTrips();
   console.log(`Database seeded successfully!`);
 };

@@ -47,8 +47,8 @@ class Flight {
   @OneToMany(() => FlightUpdates, (flightUpdate) => flightUpdate.flight)
   updates: FlightUpdates[];
 
-  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.trip)
-  public tripToFlights!: TripToFlight[];
+  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.flight)
+  tripToFlights!: TripToFlight[];
 
   @CreateDateColumn()
   createdAt: Date;

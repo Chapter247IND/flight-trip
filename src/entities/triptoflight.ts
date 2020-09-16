@@ -7,7 +7,9 @@ export class TripToFlight {
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @Column()
+  @Column({
+    generated: true,
+  })
   public sequence!: number;
 
   @ManyToOne((type) => Flight, (flight) => flight.tripToFlights)

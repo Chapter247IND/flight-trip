@@ -1,13 +1,11 @@
+import { Companies, Users } from "@server/entities";
 import dbConnection from "@server/utills/db.connection";
-import { getRepository, getConnection } from "typeorm";
-import { Users, Companies } from "@server/entities";
 import faker from "faker";
+import { getRepository } from "typeorm";
 
 export default async () => {
   await dbConnection;
   console.log(`In Comapny insertion`);
-  const connection = getConnection();
-  const companies = [];
   for (let i = 0; i < 5; i++) {
     const companyRepo = getRepository(Companies);
     const compnay = companyRepo.create({
@@ -15,6 +13,7 @@ export default async () => {
       users: await getRepository(Users)
         .createQueryBuilder()
         .orderBy("RANDOM()")
+        .limit(Math.floor(Math.random() * 6))
         .getMany(),
       administrator: await getRepository(Users)
         .createQueryBuilder()
