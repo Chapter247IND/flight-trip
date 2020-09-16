@@ -12,11 +12,6 @@ export default async () => {
     const flightDetails = flightRepo.create({
       flightName: faker.name.findName(),
       carrier: faker.lorem.text(),
-      trips: await getRepository(Trips)
-        .createQueryBuilder()
-        .orderBy("RANDOM()")
-        .limit(Math.floor(Math.random() * 6) + 1)
-        .getMany(),
     });
     await flightRepo.save(flightDetails);
   }

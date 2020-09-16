@@ -5,10 +5,12 @@ import {
   JoinColumn,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import Flights from "./flight";
+import { TripToFlight } from "./triptoflight";
 import User from "./user";
 
 @Entity({ name: "trips" })
@@ -26,9 +28,8 @@ class Trip {
   @JoinTable()
   users: User[];
 
-  @ManyToMany(() => Flights)
-  @JoinTable()
-  flights: Flights[];
+  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.flight)
+  tripToFlights!: TripToFlight[];
 
   @CreateDateColumn()
   createdAt: Date;

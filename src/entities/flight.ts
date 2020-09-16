@@ -15,6 +15,7 @@ import FlightUpdate from "./flightUpdate";
 import Trips from "./trip";
 import FlightUpdates from "./flightUpdate";
 import User from "./user";
+import { TripToFlight } from "./triptoflight";
 
 @Entity({ name: "flights" })
 class Flight {
@@ -43,12 +44,11 @@ class Flight {
   @JoinTable()
   users: User[];
 
-  @ManyToMany(() => Trips)
-  @JoinTable()
-  trips: Trips[];
-
   @OneToMany(() => FlightUpdates, (flightUpdate) => flightUpdate.flight)
   updates: FlightUpdates[];
+
+  @OneToMany((type) => TripToFlight, (tripToFlight) => tripToFlight.trip)
+  public tripToFlights!: TripToFlight[];
 
   @CreateDateColumn()
   createdAt: Date;
